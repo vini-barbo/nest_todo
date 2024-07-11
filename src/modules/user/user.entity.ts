@@ -1,5 +1,5 @@
 import type { UUID } from 'crypto';
-import { Entity, PrimaryColumn, Generated, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Generated, Column, ManyToOne } from 'typeorm';
 
 @Entity({ name: 'user' })
 export class UserEntity {

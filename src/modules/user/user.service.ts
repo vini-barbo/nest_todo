@@ -31,12 +31,12 @@ export class UserService {
       },
     })
 
-    console.log(createdUser)
 
     return createdUser ;
   }
 
   async deleteUser(userId : String): Promise<string> {
+
 
     try {
       await this.userRepository.createQueryBuilder().delete().from(UserEntity).where("id = :id", { id: userId })

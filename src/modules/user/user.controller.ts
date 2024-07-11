@@ -19,7 +19,7 @@ export class UserController {
 
   @Post('create')
   async saveUser(@Body() userSent: IUserDTO): Promise<UserEntity> {
-    console.log(userSent)
+
     const userToBeCreated: IUserDTO = {
       name: userSent.name,
       cpf: userSent.cpf,
@@ -30,9 +30,9 @@ export class UserController {
     return await this.userService.createUser(userToBeCreated);
   }
 
-  @Delete('delete/:id')
-  async deleteUser(@Param('id') userId : string): Promise<String> {
-  return await this.userService.deleteUser(userId);
+  @Delete('delete')
+  async deleteUser(@Body() id): Promise<String> {
+  return await this.userService.deleteUser(id.id);
   }
 
 }
