@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import type { IUserDTO } from './user.dto';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
@@ -7,18 +7,19 @@ import { UserEntity } from './user.entity';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get()
+  @Get('findall')
   async findUser(): Promise<UserEntity[]> {
     return await this.userService.findUser();
   }
 
-  @Get()
-  async findOneUser(userToBeFound: Partial<UserEntity>): Promise<UserEntity> {
+  @Get('findone')
+  async findOneUser(@Body() userToBeFound: Partial<UserEntity>): Promise<UserEntity> {
     return await this.userService.findOneUser(userToBeFound);
   }
 
-  @Post()
-  async saveUser(userSent: IUserDTO): Promise<UserEntity> {
+  @Post('create')
+  async saveUser(@Body() userSent: IUserDTO): Promise<UserEntity> {
+    console.log(userSent)
     const userToBeCreated: IUserDTO = {
       name: userSent.name,
       cpf: userSent.cpf,
@@ -29,13 +30,9 @@ export class UserController {
     return await this.userService.createUser(userToBeCreated);
   }
 
-  //   @Post()
-  //   async getUser(): Promise<UserEntity[]> {
-  //     return await this.userService.getUser();
-  //   }
+  @Delete('delete/:id')
+  async deleteUser(@Param('id') userId : string): Promise<String> {
+  return await this.userService.deleteUser(userId);
+  }
 
-  //   @Delete()
-  //   async getUser(): Promise<UserEntity[]> {
-  //     return await this.userService.getUser();
-  //   }
 }

@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto';
+import { randomUUID, UUID } from 'crypto';
 import { IUserDTO } from './user.dto';
 import { Inject, Injectable } from '@nestjs/common';
 import { UserEntity } from './user.entity';
@@ -25,19 +25,26 @@ export class UserService {
 
     await this.userRepository.save({ ...userToBeCreated, id: randomUUID() });
 
-    return await this.userRepository.findOne({
+    const createdUser = await this.userRepository.findOne({
       where: {
         id: newUserID,
       },
-    });
-  }
-}
+    })
 
-// const user: IUserDTO = {
-//   name: 'vinicius',
-//   cpf: '07736565422',
-//   email: 'vinicius2508@hotmail.com',
-//   birthDate: new Date(),
-//   pads: [randomUUID(), randomUUID()],
-// };
-// return user;
+    console.log(createdUser)
+
+    return createdUser ;
+  }
+
+  async deleteUser(userId : String): Promise<string> {
+
+    try {
+      await this.userRepository.createQueryBuilder().delete().from(UserEntity).where("id = :id", { id: userId })
+      .execute()
+      return `user with id: ${userId} has been deleted sucessfully`
+    } catch (error) {
+      return `fail attempt to delete user with id: ${userId}`
+    }
+  }
+
+}
