@@ -17,6 +17,11 @@ export class PageController {
     return await this.pageService.findOnePage(pageToBeFound);
   }
 
+  @Get('findmany')
+  async findManyPage(@Body() pageToBeFound: Partial<PageEntity>): Promise<PageEntity[]> {
+    return await this.pageService.findManyPage(pageToBeFound);
+  }
+
   @Post('create')
   async savePage(@Body() pageSent: IPageDTO): Promise<PageEntity> {
 

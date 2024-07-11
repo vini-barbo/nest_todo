@@ -20,6 +20,10 @@ export class PageService {
     return await this.pageRepository.findOne({ where: pageToBeFound });
   }
 
+  async findManyPage(pageToBeFound: Partial<PageEntity>): Promise<PageEntity[]> {
+    return await this.pageRepository.find({where:pageToBeFound })
+  }
+
   async createPage(pageToBeCreated: IPageDTO): Promise<PageEntity> {
     const newPageID = randomUUID();
 
