@@ -1,9 +1,6 @@
 import type { UUID } from 'crypto';
 
 export interface IPageDTO {
-  name: string;
-  birthDate: Date;
-  cpf: string;
-  email: string;
-  pads: UUID[];
+  user_id: UUID;
+  content: string;
 }
