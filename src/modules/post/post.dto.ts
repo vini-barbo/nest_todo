@@ -1,6 +1,6 @@
 import type { UUID } from 'crypto';
 
-export interface IPageDTO {
+export interface IPostDTO {
   user_id: UUID;
   content: string;
 }
