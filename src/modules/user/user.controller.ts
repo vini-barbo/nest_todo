@@ -24,6 +24,7 @@ export class UserController {
       name: userSent.name,
       cpf: userSent.cpf,
       email: userSent.email,
+      password: userSent.password,
       birthDate: userSent.birthDate,
     };
 

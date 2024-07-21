@@ -15,9 +15,13 @@ export class UserEntity {
     @Column()
     birthDate: Date;
 
-    @Column()
+    @Column({ unique: true })
     cpf: string;
 
-    @Column()
+    @Column({ unique: true })
     email: string;
+
+    @Column()
+    password: string;
+
 }

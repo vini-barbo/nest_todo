@@ -27,6 +27,7 @@ export class PostController {
 
     const postToBeCreated: IPostDTO = {
       user_id: postSent.user_id,
+      title: postSent.title,
       content: postSent.content,
     };
 

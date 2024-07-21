@@ -5,4 +5,5 @@ export interface IUserDTO {
   birthDate: Date;
   cpf: string;
   email: string;
+  password: string
 }
